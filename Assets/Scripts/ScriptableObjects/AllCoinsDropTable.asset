@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d476912cb75d28488ca0693b122290e, type: 3}
+  m_Name: AllCoinsDropTable
+  m_EditorClassIdentifier: 
+  possibleDrops:
+  - {fileID: 11400000, guid: 78b66cc070e3f7e4f87cc83c5f15b1f6, type: 2}
+  - {fileID: 11400000, guid: c56c1099393817e498b806edd212590b, type: 2}
+  - {fileID: 11400000, guid: 409cf21aec872304b96fb8011797c9e3, type: 2}
+  - {fileID: 11400000, guid: 35bec3bc07731854e9475e00ca922cff, type: 2}
+  - {fileID: 11400000, guid: c533bdc86e98c9c419d16d434f9a8e0c, type: 2}
