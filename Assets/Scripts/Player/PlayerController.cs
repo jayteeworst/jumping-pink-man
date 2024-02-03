@@ -16,6 +16,7 @@ namespace Player
         [FormerlySerializedAs("_particleSystem")] [SerializeField] private ParticleSystem movementParticles;
         [SerializeField] private ParticleSystem bloodParticles;
         [SerializeField] private ParticleSystem bloodParticlesDeath;
+        private PlayerInput playerInput;
         private SpriteRenderer playerSR; 
         private Player _player;
         private Rigidbody2D rb;
@@ -30,6 +31,7 @@ namespace Player
             _player = GetComponent<Player>();
             rb = GetComponent<Rigidbody2D>();
             playerSR = playerVisuals.GetComponent<SpriteRenderer>();
+            playerInput = GetComponent<PlayerInput>();
             groundCheck = transform.Find("GroundCheck");
             isFacingRight = true;
         }
@@ -71,6 +73,13 @@ namespace Player
             isFacingRight = !isFacingRight;
         }
 
+        public void ToggleTransparency(bool value)
+        {
+            var color = playerSR.color;
+            color.a = value ? 127 : 255;
+            playerSR.color = color;
+        }
+
         public void Move(InputAction.CallbackContext ctx)
         {
             moveDirection = ctx.ReadValue<Vector2>().x;
@@ -105,6 +114,16 @@ namespace Player
         {
             animator.SetTrigger("Death");
             bloodParticlesDeath.Play();
+        }
+
+        public void DisableInput()
+        {
+            playerInput.DeactivateInput();
+        }
+        
+        public void Knockback(Vector2 direction, float force)
+        {
+            rb.AddForce(direction * force);
         }
     }
 }

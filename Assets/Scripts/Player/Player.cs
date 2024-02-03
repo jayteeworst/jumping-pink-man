@@ -58,6 +58,7 @@ namespace Player
         {
             Debug.Log("Player ded");
             pc.PlayerDeadVisuals();
+            pc.DisableInput();
             GameManager.Instance.PlayerDead();
         }
 
@@ -83,23 +84,32 @@ namespace Player
             }
         }
 
-        public void Interact(IInteractable interactable)
+        private void Interact(IInteractable interactable)
         {
             interactable.Interact(this);
         }
 
-        IEnumerator MakeTemporarilyInvincible(float duration)
+        private IEnumerator MakeTemporarilyInvincible(float duration)
         {
             isInvincible = true;
             IgnoreCollisionWithTraps(true);
+            pc.ToggleTransparency(true);
+            
             yield return new WaitForSeconds(duration);
-            IgnoreCollisionWithTraps(false);
+            
             isInvincible = false;
+            IgnoreCollisionWithTraps(false);
+            pc.ToggleTransparency(false);
         }
 
         private void IgnoreCollisionWithTraps(bool state)
         {
             Physics2D.IgnoreLayerCollision(playerLayer, trapsLayer, state);
+        }
+
+        public void Knockback(Vector2 direction, float force)
+        {
+            pc.Knockback(direction, force);
         }
     }
 }

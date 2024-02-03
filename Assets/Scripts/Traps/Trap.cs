@@ -7,16 +7,14 @@ namespace Traps
         [SerializeField] protected TrapType trapType;
         [EnumConditionalField("trapType", TrapType.Damaging)]
         [SerializeField] [Range(1f, 10f)] protected int damageAmount;
-        [SerializeField] protected float knockbackForce = 500f;
+        [SerializeField] protected float knockbackForce = 1000f;
 
         protected void OnCollisionEnter2D(Collision2D other)
         {
             if (!other.gameObject.TryGetComponent<Player.Player>(out var player)) return;
             PlayerCollided(player);
             if (trapType == TrapType.Instakill) return;
-            var playerRb = player.GetComponent<Rigidbody2D>();
-            Vector2 knockbackDirection = -other.GetContact(0).normal;
-            playerRb.AddForce(knockbackDirection * knockbackForce);
+            player.Knockback(-other.GetContact(0).normal, knockbackForce);
         }
 
         protected abstract void PlayerCollided(Player.Player player);
