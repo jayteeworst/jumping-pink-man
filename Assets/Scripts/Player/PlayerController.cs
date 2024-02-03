@@ -76,7 +76,7 @@ namespace Player
         public void ToggleTransparency(bool value)
         {
             var color = playerSR.color;
-            color.a = value ? 127 : 255;
+            color.a = value ? 0.5f : 1f;
             playerSR.color = color;
         }
 
