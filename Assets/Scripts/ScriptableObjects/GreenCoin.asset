@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: GreenCoin
   itemValue: 3
   dropChance: 4
-  prefabSource: {fileID: 5899096368163967454, guid: b9c52ec107de4394e9472a7571570bab, type: 3}
+  prefabSource: {fileID: 1041921278728866342, guid: 4acf20a65469fd748ae5a1c73d053f71, type: 3}

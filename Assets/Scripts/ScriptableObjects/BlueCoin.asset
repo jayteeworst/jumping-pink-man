@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: BlueCoin
   itemValue: 2
   dropChance: 8
-  prefabSource: {fileID: 3243134753656628098, guid: a802c40609560984cb81da68c19e5101, type: 3}
+  prefabSource: {fileID: 8621126159943615123, guid: eeca491465b89804e950faac239b611d, type: 3}

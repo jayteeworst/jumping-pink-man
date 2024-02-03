@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: PurpleCoin
   itemValue: 10
   dropChance: 1
-  prefabSource: {fileID: 3409636187073886731, guid: 22acbd16a43bc1b4e9fa2372268c09b2, type: 3}
+  prefabSource: {fileID: 1290099166208677152, guid: 992d08ad8f2e10749a65c3d6c828fe39, type: 3}

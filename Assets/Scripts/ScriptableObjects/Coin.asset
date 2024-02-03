@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Coin
   itemValue: 1
   dropChance: 10
-  prefabSource: {fileID: 5877674770997052597, guid: 66b1e25504cab8d458d2021e139c386f, type: 3}
+  prefabSource: {fileID: 5877674770997052597, guid: ed0893c6520ae634e8614923e0693433, type: 3}

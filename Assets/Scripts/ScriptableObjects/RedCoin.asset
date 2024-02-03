@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: RedCoin
   itemValue: 5
   dropChance: 2
-  prefabSource: {fileID: 7133679947845331736, guid: 572483bb128a1b64b94b9b857802b828, type: 3}
+  prefabSource: {fileID: 7677252455340564329, guid: 540b2c6997072954a977ab400d33db85, type: 3}
