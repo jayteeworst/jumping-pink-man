@@ -111,5 +111,12 @@ namespace Player
         {
             pc.Knockback(direction, force);
         }
+
+        public void Restart()
+        {
+            FullyHeal();
+            pc.ResetParticlesAndAnimator();
+            pc.EnableInput();
+        }
     }
 }

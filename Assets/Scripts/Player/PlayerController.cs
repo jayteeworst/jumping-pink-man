@@ -120,10 +120,21 @@ namespace Player
         {
             playerInput.DeactivateInput();
         }
+
+        public void EnableInput()
+        {
+            playerInput.ActivateInput();
+        }
         
         public void Knockback(Vector2 direction, float force)
         {
             rb.AddForce(direction * force);
+        }
+
+        public void ResetParticlesAndAnimator()
+        {
+            bloodParticlesDeath.Stop();
+            animator.SetTrigger("Restart");
         }
     }
 }

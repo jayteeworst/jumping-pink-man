@@ -2,17 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public GameState gameState { get; private set; } 
+    public State GameState { get; private set; } 
     public static GameManager Instance { get; private set; }
+
+    public Action<State> onGameStateChanged;
 
     private GameManager() { }
 
     [SerializeField] private SceneLoader.SceneName nextSceneName;
-    [SerializeField] private Button _button;
+    [FormerlySerializedAs("_button")] [SerializeField] private Button _nextLevelButton;
+    [SerializeField] private Button _tryAgainButton;
 
     private void Awake()
     {
@@ -23,23 +27,44 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
 
-        gameState = GameState.NotStarted;
-        _button.onClick.AddListener(LoadNextScene);
-        _button.gameObject.SetActive(false);
+        ChangeGameState(State.NotStarted);
         
+        ButtonsSetUp();
+
         if(nextSceneName == SceneLoader.SceneName.LoadingScreen)
             Debug.LogWarning("nextSceneName is set to LoadingScreen. This might be unwanted.");
     }
 
+    private void Start()
+    {
+        // TODO: Callback from loading screen (ie. press any key to continue)
+        ChangeGameState(State.Started);
+    }
+
+    private void ButtonsSetUp()
+    {
+        _nextLevelButton.onClick.AddListener(LoadNextScene);
+        _nextLevelButton.gameObject.SetActive(false);
+        _tryAgainButton.onClick.AddListener(TryAgain);
+        _tryAgainButton.gameObject.SetActive(false);
+    }
+
     public void LevelComplete()
     {
-        gameState = GameState.LevelSuccess;
-        _button.gameObject.SetActive(true);
+        ChangeGameState(State.LevelSuccess);
+        _nextLevelButton.gameObject.SetActive(true);
     }
 
     public void PlayerDead()
     {
-        gameState = GameState.LevelFailed;
+        ChangeGameState(State.LevelFailed);
+        _tryAgainButton.gameObject.SetActive(true);
+    }
+
+    private void TryAgain()
+    {
+        ChangeGameState(State.Restarted);
+        _tryAgainButton.gameObject.SetActive(false);
     }
 
     private void LoadNextScene()
@@ -47,11 +72,18 @@ public class GameManager : MonoBehaviour
         SceneLoader.LoadScene(nextSceneName);
     }
 
-    public enum GameState
+    private void ChangeGameState(State state)
+    {
+        GameState = state;
+        onGameStateChanged?.Invoke(state);
+    }
+    
+    public enum State
     {
         NotStarted,
         Started,
         LevelFailed,
-        LevelSuccess
+        LevelSuccess,
+        Restarted
     }
 }

@@ -10,7 +10,7 @@ public class Trophy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (!other.gameObject.TryGetComponent<Player.Player>(out _)) return;
-        if (GameManager.Instance.gameState == GameManager.GameState.LevelSuccess) return;
+        if (GameManager.Instance.GameState == GameManager.State.LevelSuccess) return;
         PlayConfetti();
         GameManager.Instance.LevelComplete();
     }
