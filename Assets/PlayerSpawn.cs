@@ -11,6 +11,7 @@ public class PlayerSpawn : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.onGameStateChanged += GameStateChanged;
+        playerGO = FindObjectOfType<Player.Player>().gameObject;
     }
 
     private void GameStateChanged(GameManager.State state)

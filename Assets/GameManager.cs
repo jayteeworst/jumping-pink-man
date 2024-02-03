@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SceneLoader.SceneName nextSceneName;
     [FormerlySerializedAs("_button")] [SerializeField] private Button _nextLevelButton;
     [SerializeField] private Button _tryAgainButton;
+    [SerializeField] private Button _mainMenuButton;
 
     private void Awake()
     {
@@ -47,18 +48,22 @@ public class GameManager : MonoBehaviour
         _nextLevelButton.gameObject.SetActive(false);
         _tryAgainButton.onClick.AddListener(TryAgain);
         _tryAgainButton.gameObject.SetActive(false);
+        _mainMenuButton.onClick.AddListener(() => SceneLoader.LoadScene(SceneLoader.SceneName.MainMenu));
+        _mainMenuButton.gameObject.SetActive(false);
     }
 
     public void LevelComplete()
     {
         ChangeGameState(State.LevelSuccess);
         _nextLevelButton.gameObject.SetActive(true);
+        _mainMenuButton.gameObject.SetActive(true);
     }
 
     public void PlayerDead()
     {
         ChangeGameState(State.LevelFailed);
         _tryAgainButton.gameObject.SetActive(true);
+        _mainMenuButton.gameObject.SetActive(true);
     }
 
     private void TryAgain()
