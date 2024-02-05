@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour, IDamageInformation
         if (HasBeenHitFromAbove(other.GetContact(0)))
         {
             Damaged();
+            player.Knockback(-other.GetContact(0).normal, knockbackForce / 5f);
         }
         else
         {
