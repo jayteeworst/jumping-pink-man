@@ -9,6 +9,7 @@ namespace Player
     {
         private int interactableLayer;
         private int hitpoints;
+        public int Hitpoints => hitpoints;
         [SerializeField] private int maximumHitpoints;
         private bool isInvincible;
         public bool IsInvincible
@@ -65,6 +66,8 @@ namespace Player
         public void Heal(int healAmount)
         {
             hitpoints += healAmount;
+            if (hitpoints > maximumHitpoints)
+                hitpoints = maximumHitpoints;
         }
 
         public void FullyHeal()

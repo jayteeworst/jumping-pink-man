@@ -7,8 +7,6 @@ public class Parallax : MonoBehaviour
     {
         public Transform layerTransform;
         public float scrollSpeed;
-        public bool verticalParallax;
-        public float verticalParallaxRange = 0.1f;
     }
 
     public ParallaxLayer[] layers;
@@ -25,20 +23,12 @@ public class Parallax : MonoBehaviour
     private void Update()
     {
         float deltaMovementX = cameraTransform.position.x - previousCameraPosition.x;
-        float deltaMovementY = cameraTransform.position.y - previousCameraPosition.y;
 
         foreach (ParallaxLayer layer in layers)
         {
             float parallaxX = deltaMovementX * layer.scrollSpeed;
-            float parallaxY = deltaMovementY;
 
-            Vector3 newPosition = layer.layerTransform.position + new Vector3(parallaxX, parallaxY, 0f);
-
-            // Clamping the vertical parallax within the specified range
-            if (layer.verticalParallax)
-            {
-                newPosition.y = Mathf.Clamp(newPosition.y, layer.layerTransform.position.y - layer.verticalParallaxRange, layer.layerTransform.position.y + layer.verticalParallaxRange);
-            }
+            Vector3 newPosition = layer.layerTransform.position + new Vector3(parallaxX, 0f, 0f);
 
             layer.layerTransform.position = newPosition;
         }

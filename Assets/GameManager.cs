@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
     {
         ChangeGameState(State.Restarted);
         _tryAgainButton.gameObject.SetActive(false);
+        _mainMenuButton.gameObject.SetActive(false);
     }
 
     private void LoadNextScene()

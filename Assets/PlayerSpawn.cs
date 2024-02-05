@@ -11,15 +11,17 @@ public class PlayerSpawn : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.onGameStateChanged += GameStateChanged;
-        playerGO = FindObjectOfType<Player.Player>().gameObject;
+        
+        if(FindObjectOfType<Player.Player>())
+            playerGO = FindObjectOfType<Player.Player>().gameObject;
     }
 
     private void GameStateChanged(GameManager.State state)
     {
-        if (state == GameManager.State.Started)
-        {
-            OnGameStarted();
-        }
+        // if (state == GameManager.State.Started)
+        // {
+        //     OnGameStarted();
+        // }
 
         if (state == GameManager.State.Restarted)
         {
@@ -33,8 +35,8 @@ public class PlayerSpawn : MonoBehaviour
         playerGO.GetComponent<Player.Player>().Restart();
     }
 
-    private void OnGameStarted()
-    {
-        playerGO = Instantiate(playerPrefab, transform.position, Quaternion.identity);
-    }
+    // private void OnGameStarted()
+    // {
+    //     playerGO = Instantiate(playerPrefab, transform.position, Quaternion.identity);
+    // }
 }

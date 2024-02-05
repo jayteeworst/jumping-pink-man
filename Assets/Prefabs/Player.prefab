@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 10
+  jumpForce: 7.5
   playerVisuals: {fileID: 9131909939850516268}
   groundLayer:
     serializedVersion: 2
