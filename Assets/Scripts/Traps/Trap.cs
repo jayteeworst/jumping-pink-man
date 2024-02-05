@@ -5,7 +5,9 @@ namespace Traps
     public abstract class Trap : MonoBehaviour, IDamageInformation
     {
         [SerializeField] protected TrapType trapType;
+#if UNITY_EDITOR
         [EnumConditionalField("trapType", TrapType.Damaging)]
+#endif
         [SerializeField] [Range(1f, 10f)] protected int damageAmount;
         [SerializeField] protected float knockbackForce = 1000f;
 
