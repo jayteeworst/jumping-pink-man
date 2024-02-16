@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour, IDamageInformation
     private void Damaged()
     {
         Debug.Log(gameObject.name + " has been damaged");
-        
+        AudioManager.Instance.EnemyDamaged(transform.position);
         if (--hitpoints <= 0)
         {
             Destroyed();

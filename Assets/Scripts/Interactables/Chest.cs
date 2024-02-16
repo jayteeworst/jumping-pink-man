@@ -28,6 +28,7 @@ namespace Interactables
             chestAnimator.SetBool(IsOpened, isOpen);
             DisableInteraction();
             SpawnContents();
+            AudioManager.Instance.ChestOpened(transform.position);
         }
     }
 }

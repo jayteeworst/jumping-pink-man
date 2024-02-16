@@ -71,7 +71,7 @@ Transform:
   - {fileID: 6635464859288305414}
   - {fileID: 8164819473872362093}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &7460431719502428017
 CapsuleCollider2D:
@@ -336,6 +336,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8e424261-0018-4501-8b15-c4562fd3eb55
     m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3749960518962412026}
+        m_TargetAssemblyTypeName: Player.PlayerController, Assembly-CSharp
+        m_MethodName: EscapeKeyPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ca0f08ca-f44d-4b4a-b6ed-e5f70ff77aa7
+    m_ActionName: Player/Escape[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

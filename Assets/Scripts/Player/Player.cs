@@ -51,7 +51,7 @@ namespace Player
                 Kill();
                 return;
             }
-
+            AudioManager.Instance.PlayerDamaged(transform.position);
             StartCoroutine(MakeTemporarilyInvincible(3f));
         }
         
@@ -60,6 +60,7 @@ namespace Player
             Debug.Log("Player ded");
             pc.PlayerDeadVisuals();
             pc.DisableInput();
+            AudioManager.Instance.PlayerDied(transform.position);
             GameManager.Instance.PlayerDead();
         }
 
