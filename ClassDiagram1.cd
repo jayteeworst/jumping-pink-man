@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Traps.Trap" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="1.25" Width="3.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Traps.Trap.TrapType">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Traps\Trap.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAABAAAAQAAAAAAACAEAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Traps\Trap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="1.456" Collapsed="true" />
+  </Class>
+  <Class Name="Traps.EnumConditionalFieldAttribute" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Traps\Trap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Traps.EnumConditionalFieldDrawer" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Traps\Trap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Traps.Morgenstern">
+    <Position X="1" Y="3.5" Width="2.5" />
+    <Members>
+      <Method Name="FixedUpdate" Hidden="true" />
+      <Field Name="rootTransform" Hidden="true" />
+      <Field Name="rotationSpeed" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAABAAAAAAAAAAAAAAAAAQAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Traps\Morgenstern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Traps.Saw">
+    <Position X="8.75" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Traps\Saw.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Traps.Spikes">
+    <Position X="8.75" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Traps\Spikes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.MonoBehaviour" Collapsed="true">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
