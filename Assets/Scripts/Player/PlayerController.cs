@@ -104,6 +104,12 @@ namespace Player
                 _player.LookForInteractables();
         }
 
+        public void EscapeKeyPressed(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed)
+                GameManager.Instance.HandleEscapeButton();
+        }
+
         public void PlayerHitVisuals()
         {
             animator.SetTrigger("Hit");

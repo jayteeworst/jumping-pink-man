@@ -1,13 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuUI : MonoBehaviour
+public class PauseMenuUI : MonoBehaviour
 {
-    [SerializeField] private GameObject mainMenuContainer;
-    [SerializeField] private Button playButton;
+    [SerializeField] private GameObject pauseMenuContainer;
+    [SerializeField] private Button continueButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button exitButton;
     [SerializeField] private GameObject optionsContainer;
@@ -17,13 +16,13 @@ public class MainMenuUI : MonoBehaviour
     
     private void Awake()
     {
-        playButton.onClick.AddListener(() =>
+        continueButton.onClick.AddListener(() =>
         {
-            SceneLoader.LoadScene(SceneLoader.SceneName.Sandbox);
+            GameManager.Instance.PauseGame(false);
         });
         optionsButton.onClick.AddListener(() =>
         {
-            mainMenuContainer.SetActive(false);
+            pauseMenuContainer.SetActive(false);
             optionsContainer.SetActive(true);
         });
         exitButton.onClick.AddListener(() =>
@@ -39,7 +38,7 @@ public class MainMenuUI : MonoBehaviour
         returnButton.onClick.AddListener(() =>
         {
             optionsContainer.SetActive(false);
-            mainMenuContainer.SetActive(true);
+            pauseMenuContainer.SetActive(true);
             SaveCurrentValues();
         });
     }
@@ -56,6 +55,5 @@ public class MainMenuUI : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
         PlayerPrefs.SetFloat("SFXVolume", SFXSlider.value);
         PlayerPrefs.Save();
-        
     }
 }

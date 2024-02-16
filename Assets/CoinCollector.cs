@@ -12,10 +12,12 @@ namespace Collectibles
         private int collectedCoinsValue;
         private Coin[] coins;
         private List<Coin> coinsRandomized = new();
+        private CoinAudioManager _coinAudioManager;
         [SerializeField] private TextMeshProUGUI coinText;
 
         private void Start()
         {
+            _coinAudioManager = GetComponent<CoinAudioManager>();
             coins = GetComponentsInChildren<Coin>(true);
             foreach (var coin in coins)
             {
@@ -42,6 +44,7 @@ namespace Collectibles
             Debug.Log("Collected " + collectedCoin + " (Value: " + collectedCoin.CoinType.itemValue + ")");
             collectedCoinsValue += collectedCoin.CoinType.itemValue;
             coinText.text = collectedCoinsValue.ToString();
+            _coinAudioManager.PlayCoinPickupAudio();
         }
     }
 }

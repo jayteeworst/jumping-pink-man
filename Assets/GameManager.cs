@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     [FormerlySerializedAs("_button")] [SerializeField] private Button _nextLevelButton;
     [SerializeField] private Button _tryAgainButton;
     [SerializeField] private Button _mainMenuButton;
+    [SerializeField] private GameObject pauseMenu;
 
     private void Awake()
     {
@@ -38,7 +40,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // TODO: Callback from loading screen (ie. press any key to continue)
         ChangeGameState(State.Started);
     }
 
@@ -83,13 +84,53 @@ public class GameManager : MonoBehaviour
         GameState = state;
         onGameStateChanged?.Invoke(state);
     }
+
+    public void PauseGame(bool value)
+    {
+        if (value)
+        {
+            GameState = State.Paused;
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
+        }
+        else
+        {
+            GameState = State.Started;
+            Time.timeScale = 1f;
+            pauseMenu.SetActive(false);
+        }
+    }
     
     public enum State
     {
         NotStarted,
         Started,
+        Paused,
         LevelFailed,
         LevelSuccess,
         Restarted
+    }
+
+    public void HandleEscapeButton()
+    {
+        switch (GameState)
+        {
+            case State.Started:
+                PauseGame(true);
+                break;
+            case State.Paused:
+                PauseGame(false);
+                break;
+            case State.NotStarted:
+                break;
+            case State.LevelFailed:
+                break;
+            case State.LevelSuccess:
+                break;
+            case State.Restarted:
+                break;
+            default:
+                throw new InvalidEnumArgumentException(GameState.ToString());
+        }
     }
 }

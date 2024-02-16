@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb3cfbc589545c1b23416409ca04ebc, type: 3}
+  m_Name: AudioClipList
+  m_EditorClassIdentifier: 
+  chestOpened: {fileID: 8300000, guid: da4a2622abe334cb488e9a1baf0c8349, type: 3}
+  playerDeath: {fileID: 8300000, guid: 4f5bc64a69b9741b49c08897fbf40c67, type: 3}
+  enemyDamaged: {fileID: 8300000, guid: 622cdecfcf58444d7be5352e4209020a, type: 3}
+  playerDamaged: {fileID: 8300000, guid: 70b0f0d3f27e78f42aa6aaa69e6a44a1, type: 3}
