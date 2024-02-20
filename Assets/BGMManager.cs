@@ -7,6 +7,11 @@ public class BGMManager : MonoBehaviour
     private AudioSource _audioSource;
     private float _volume;
 
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
         if (!musicList)
@@ -14,8 +19,7 @@ public class BGMManager : MonoBehaviour
             Debug.LogError("MusicList ScriptableObject not assigned!", this);
             return;
         }
-        _audioSource = GetComponent<AudioSource>();
-
+        
         int randomIndex = Random.Range(0, musicList.musicTracks.Length - 1);
         AudioClip randomMusicTrack = musicList.musicTracks[randomIndex];
 
