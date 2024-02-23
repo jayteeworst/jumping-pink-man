@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Platformer;
 using UnityEngine;
 
 public class Trampoline : MonoBehaviour
@@ -18,6 +17,8 @@ public class Trampoline : MonoBehaviour
     {
         if (!other.gameObject.TryGetComponent<Rigidbody2D>(out var rb)) return;
         Debug.Log(rb + " touched " + gameObject.name);
+        // rb.AddForceAtPosition(transform.up * bounceForce, rb.position);
+        rb.velocity = Vector2.zero;
         rb.AddForce(transform.up * bounceForce);
         _animator.SetTrigger(Launch);
     }

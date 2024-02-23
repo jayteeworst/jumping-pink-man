@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2922904476416099086
 SpriteRenderer:
@@ -156,8 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b47439072e8199489975b02171dbadf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalPingPong: 0
-  horizontalPingPong: 6
+  finishPosition: {x: 0, y: 0}
+  patrolDuration: 3
+  waitDuration: 1
 --- !u!114 &3446863892859959359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c1ac47b0c7c499f81d13ceaf78e9056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trapType: 0
   damageAmount: 1
   knockbackForce: 500
+  trapType: 0
+  _animator: {fileID: 8088324545019992630}
+  _patrol: {fileID: 8638832393796017058}
+  _onHitPauseDuration: 2

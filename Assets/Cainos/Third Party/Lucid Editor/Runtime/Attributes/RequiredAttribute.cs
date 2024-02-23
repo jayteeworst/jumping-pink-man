@@ -1,12 +1,11 @@
 using System;
-using UnityEngine;
 
 namespace Cainos.LucidEditor
 {
     [AttributeUsage(AttributeTargets.Field)]
     public class RequiredAttribute : Attribute
     {
-        public readonly string message = null;
+        public readonly string message;
         public RequiredAttribute() { }
         public RequiredAttribute(string message)
         {

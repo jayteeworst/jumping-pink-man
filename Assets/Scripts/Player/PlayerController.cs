@@ -1,100 +1,76 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
-namespace Player
+namespace Platformer
 {
     public class PlayerController : MonoBehaviour
     {
         public float moveSpeed = 5f;
         public float jumpForce = 10f;
         
-        [SerializeField] private GameObject playerVisuals;
         [SerializeField] private LayerMask groundLayer;
-        [SerializeField] private Animator animator;
-        [FormerlySerializedAs("_particleSystem")] [SerializeField] private ParticleSystem movementParticles;
-        [SerializeField] private ParticleSystem bloodParticles;
-        [SerializeField] private ParticleSystem bloodParticlesDeath;
-        private PlayerInput playerInput;
-        private SpriteRenderer playerSR; 
+        [SerializeField] private Collider2D groundCheckCollider;
+        private PlayerVisuals _playerVisuals;
+        private PlayerInput _playerInput;
         private Player _player;
-        private Rigidbody2D rb;
-        private bool isGrounded;
-        private Transform groundCheck;
-        private float moveDirection;
-        private bool isFacingRight;
-        private bool isMoving;
+        private Rigidbody2D _rb;
+        private bool _isGrounded;
+        private float _moveDirection;
+
+        public bool enableDebug;
         
-        private void Start()
+        private void OnEnable()
+        {
+            _player.onHit.AddListener(Knockback);
+            _player.onDeath.AddListener(DisableInput);
+            _player.onRespawn.AddListener(EnableInput);
+        }
+
+        private void OnDisable()
+        {
+            _player.onHit.AddListener(Knockback);
+        }
+
+        private void Awake()
         {
             _player = GetComponent<Player>();
-            rb = GetComponent<Rigidbody2D>();
-            playerSR = playerVisuals.GetComponent<SpriteRenderer>();
-            playerInput = GetComponent<PlayerInput>();
-            groundCheck = transform.Find("GroundCheck");
-            isFacingRight = true;
+            _playerVisuals = GetComponent<PlayerVisuals>();
+            _rb = GetComponent<Rigidbody2D>();
+            _playerInput = GetComponent<PlayerInput>();
         }
 
         private void Update()
         {
-            rb.velocity = new Vector2(moveDirection * moveSpeed, rb.velocity.y);
-            isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer);
-            isMoving = rb.velocity.x != 0 || rb.velocity.y != 0;
+            _rb.velocity = new Vector2(_moveDirection * moveSpeed, _rb.velocity.y);
+            _isGrounded = Physics2D.IsTouchingLayers(groundCheckCollider, groundLayer);
+            _playerVisuals.UpdateVisuals(_rb.velocity, _moveDirection);
 
-            if (isMoving)
+            if (enableDebug)
             {
-                movementParticles.Play();
+                var totalForce = _rb.totalForce;
+                if(totalForce.x != 0 || totalForce.y != 0)
+                    Debug.Log($"totalforce x: {totalForce.x}, totalforce y: {totalForce.y}");
             }
-            else if (!isMoving)
-            {
-                movementParticles.Stop();
-            }
-
-            if (!isFacingRight && moveDirection > 0f)
-            {
-                FlipCharacter();
-            }
-            else if (isFacingRight && moveDirection < 0f)
-            {
-                FlipCharacter();
-            }
-            
-            animator.SetBool("Running", rb.velocity.x != 0);
-            animator.SetBool("Jumping", rb.velocity.y > 0);
-            animator.SetBool("Falling", rb.velocity.y < 0);
-            animator.SetFloat("VerticalVelocity", rb.velocity.y);
-            animator.SetFloat("RunSpeed", Mathf.Abs(rb.velocity.x));
-        }
-
-        private void FlipCharacter()
-        {
-            playerSR.flipX = !playerSR.flipX;
-            isFacingRight = !isFacingRight;
-        }
-
-        public void ToggleTransparency(bool value)
-        {
-            var color = playerSR.color;
-            color.a = value ? 0.5f : 1f;
-            playerSR.color = color;
         }
 
         public void Move(InputAction.CallbackContext ctx)
         {
-            moveDirection = ctx.ReadValue<Vector2>().x;
+            _moveDirection = ctx.ReadValue<Vector2>().x;
         }
 
         public void Jump(InputAction.CallbackContext ctx)
         {
-            if (isGrounded && ctx.performed)
+            if (_isGrounded && ctx.performed)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
             }
 
-            if (ctx.canceled && rb.velocity.y > 0)
+            if (ctx.canceled && _rb.velocity.y > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+                var velocity = _rb.velocity;
+                velocity = new Vector2(velocity.x, velocity.y * 0.5f);
+                _rb.velocity = velocity;
             }
         }
 
@@ -110,37 +86,19 @@ namespace Player
                 GameManager.Instance.HandleEscapeButton();
         }
 
-        public void PlayerHitVisuals()
+        private void DisableInput()
         {
-            animator.SetTrigger("Hit");
-            bloodParticles.Play();
+            _playerInput.DeactivateInput();
         }
 
-        public void PlayerDeadVisuals()
+        private void EnableInput()
         {
-            animator.SetTrigger("Death");
-            bloodParticlesDeath.Play();
+            _playerInput.ActivateInput();
         }
 
-        public void DisableInput()
+        private void Knockback(Vector2 direction, float force)
         {
-            playerInput.DeactivateInput();
-        }
-
-        public void EnableInput()
-        {
-            playerInput.ActivateInput();
-        }
-        
-        public void Knockback(Vector2 direction, float force)
-        {
-            rb.AddForce(direction * force);
-        }
-
-        public void ResetParticlesAndAnimator()
-        {
-            bloodParticlesDeath.Stop();
-            animator.SetTrigger("Restart");
+            _rb.AddForce(direction * force);
         }
     }
 }

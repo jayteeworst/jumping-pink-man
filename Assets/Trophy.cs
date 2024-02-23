@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Platformer;
 using UnityEngine;
 
 public class Trophy : MonoBehaviour
@@ -9,7 +6,7 @@ public class Trophy : MonoBehaviour
     [SerializeField] private ParticleSystem _particleSystem;
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!other.gameObject.TryGetComponent<Player.Player>(out _)) return;
+        if (!other.gameObject.TryGetComponent<Player>(out _)) return;
         if (GameManager.Instance.GameState == GameManager.State.LevelSuccess) return;
         PlayConfetti();
         GameManager.Instance.LevelComplete();

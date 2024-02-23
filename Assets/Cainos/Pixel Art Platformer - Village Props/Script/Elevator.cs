@@ -1,7 +1,6 @@
-using UnityEngine;
-
-using Cainos.LucidEditor;
 using Cainos.Common;
+using Cainos.LucidEditor;
+using UnityEngine;
 
 namespace Cainos.PixelArtPlatformer_VillageProps
 {
@@ -23,7 +22,7 @@ namespace Cainos.PixelArtPlatformer_VillageProps
             set
             {
                 if (value < 0) value = 0.0f;
-                this.length = value;
+                length = value;
 
                 platform.transform.localPosition = new Vector3(0.0f, -value, 0.0f);
                 chainL.size = new Vector2(0.09375f, value - 8 * 0.03125f );
@@ -55,7 +54,7 @@ namespace Cainos.PixelArtPlatformer_VillageProps
                 waitTimer = 0.0f;
             }
         }
-        private bool isWaiting = false;
+        private bool isWaiting;
 
 
         private float waitTimer;

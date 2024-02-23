@@ -1,17 +1,21 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Platformer;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHealthView : MonoBehaviour
 {
-    [SerializeField] private Player.Player _player;
+    private Player _player;
     [SerializeField] private TextMeshProUGUI _hpText;
 
-    private void Update()
+    private void Start()
     {
-        _hpText.text = _player.Hitpoints.ToString();
+        _player = FindObjectOfType<Player>();
+        _player.onHealthChanged.AddListener(UpdateText);
+    }
+
+    private void UpdateText(int value)
+    {
+        _hpText.text = value.ToString();
     }
 }

@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "DropTable", menuName = "Items/DropTable")]
 public class DropTable : ScriptableObject

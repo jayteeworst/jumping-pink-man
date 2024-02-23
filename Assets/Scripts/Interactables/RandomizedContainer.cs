@@ -1,53 +1,55 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class RandomizedContainer : InteractableObject
+namespace Platformer
 {
-    public DropTable dropTable;
-    public List<GameObject> contents = new();
-    [SerializeField] private int itemAmount = 1;
-    
-    protected override void Awake()
+    public abstract class RandomizedContainer : InteractableObject
     {
-        base.Awake();
-        if (dropTable == null)
-        {
-            Debug.LogError(gameObject.name + " doesn't define drop table!");
-            return;
-        }
-        
-        RandomizeContents();
-    }
+        public DropTable dropTable;
+        public List<GameObject> contents = new();
+        [SerializeField] private int itemAmount = 1;
 
-    private void RandomizeContents()
-    {
-        float totalWeight = dropTable.TotalWeight();
-
-        for (int i = 0; i < itemAmount; i++)
+        protected override void Awake()
         {
-            float roll = Random.Range(0f, totalWeight);
-            float progress = 0f;
-            
-            foreach (var item in dropTable.possibleDrops)
+            base.Awake();
+            if (dropTable == null)
             {
-                progress += item.dropChance;
-                if (progress > roll)
+                Debug.LogError(gameObject.name + " doesn't define drop table!");
+                return;
+            }
+
+            RandomizeContents();
+        }
+
+        private void RandomizeContents()
+        {
+            float totalWeight = dropTable.TotalWeight();
+
+            for (int i = 0; i < itemAmount; i++)
+            {
+                float roll = Random.Range(0f, totalWeight);
+                float progress = 0f;
+
+                foreach (var item in dropTable.possibleDrops)
                 {
-                    contents.Add(item.prefabSource);
-                    break;
+                    progress += item.dropChance;
+                    if (progress > roll)
+                    {
+                        contents.Add(item.prefabSource);
+                        break;
+                    }
                 }
             }
         }
-    }
 
-    protected void SpawnContents()
-    {
-        foreach (var valuable in contents)
+        protected void SpawnContents()
         {
-            Instantiate(valuable, transform.position + new Vector3(Random.Range(-1f, 1f), 0, -0.1f), Quaternion.identity);
+            foreach (var valuable in contents)
+            {
+                Instantiate(valuable, transform.position + new Vector3(Random.Range(-1f, 1f), 0, -0.1f),
+                    Quaternion.identity);
+            }
         }
     }
 }

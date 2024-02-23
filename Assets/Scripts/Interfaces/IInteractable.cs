@@ -1,4 +1,6 @@
+using Platformer;
+
 public interface IInteractable
 {
-    void Interact(Player.Player interactor);
+    void Interact(Player interactor);
 }

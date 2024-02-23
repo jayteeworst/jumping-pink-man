@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace Cainos.LucidEditor
 {
@@ -10,7 +9,7 @@ namespace Cainos.LucidEditor
 
         public IndentAttribute()
         {
-            this.indent = 1;
+            indent = 1;
         }
         
         public IndentAttribute(int indent)

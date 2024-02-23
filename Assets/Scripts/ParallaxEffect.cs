@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ParallaxEffect : MonoBehaviour
@@ -27,7 +24,7 @@ public class ParallaxEffect : MonoBehaviour
     private void LateUpdate()
     {
         var positionDelta = cameraTransform.position - previousCamPosition;
-        transform.position += new Vector3(positionDelta.x * parallaxCoefficient.x, 0, 0);
+        transform.position += new Vector3(positionDelta.x * parallaxCoefficient.x, positionDelta.y * parallaxCoefficient.y, 0);
         previousCamPosition = cameraTransform.position;
 
         if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureWidth)

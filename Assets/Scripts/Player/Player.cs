@@ -1,87 +1,82 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace Player
+namespace Platformer
 {
     public class Player : MonoBehaviour
     {
-        private int interactableLayer;
-        private int hitpoints;
-        public int Hitpoints => hitpoints;
+        private int _hitpoints;
+        public int Hitpoints
+        {
+            get => _hitpoints;
+            private set
+            {
+                _hitpoints = Mathf.Clamp(value, 0, maximumHitpoints);
+                onHealthChanged.Invoke(value);
+            }
+        }
         [SerializeField] private int maximumHitpoints;
-        private bool isInvincible;
-        public bool IsInvincible
-        {
-            get => isInvincible;
-            set => isInvincible = value;
-        }
-        public int MaximumHitpoints => maximumHitpoints;
-        private PlayerController pc;
-        private int playerLayer;
-        private int trapsLayer;
 
-        private void Awake()
-        {
-            pc = GetComponent<PlayerController>();
-        }
+        public UnityEvent<int> onHealthChanged;
+        public UnityEvent<Vector2, float> onHit;
+        public UnityEvent onDeath;
+        public UnityEvent onRespawn;
 
         private void Start()
         {
-            hitpoints = maximumHitpoints;
-            interactableLayer = 1 << LayerMask.NameToLayer("Interactable");
-            playerLayer = LayerMask.NameToLayer("Player");
-            trapsLayer = LayerMask.NameToLayer("Trap");
+            SetHitpointsToMax();
         }
 
-        public void Hit(IDamageInformation damageInformation)
+        public void Hit(DamageInfo damageInfo)
         {
-            if (isInvincible) return;
-            pc.PlayerHitVisuals();
-            Damage(damageInformation.DamageInfo.DamageAmount);
-            Debug.Log(this + " hit by " + damageInformation.DamageInfo.DamageSourceName + " for " + damageInformation.DamageInfo.DamageAmount + " HP!");
+            onHit.Invoke(-damageInfo.contactPoint.normal, damageInfo.knockbackForce);
+            Damaged(damageInfo.amount);
+            Debug.Log(this + " hit by " + damageInfo.sourceName + " for " + damageInfo.amount + " HP!");
         }
 
-        private void Damage(int amount)
+        private void Damaged(int amount)
         {
-            hitpoints -= amount;
-            if (hitpoints <= 0)
+            Hitpoints -= amount;
+            if (Hitpoints <= 0)
             {
-                Kill();
+                Killed();
                 return;
             }
             AudioManager.Instance.PlayerDamaged(transform.position);
-            StartCoroutine(MakeTemporarilyInvincible(3f));
         }
         
-        public void Kill()
+        public void Killed()
         {
-            Debug.Log("Player ded");
-            pc.PlayerDeadVisuals();
-            pc.DisableInput();
+            onDeath.Invoke();
             AudioManager.Instance.PlayerDied(transform.position);
             GameManager.Instance.PlayerDead();
         }
 
-        public void Heal(int healAmount)
+        public void Healed(int healAmount)
         {
-            hitpoints += healAmount;
-            if (hitpoints > maximumHitpoints)
-                hitpoints = maximumHitpoints;
+            Hitpoints = Mathf.Clamp(Hitpoints + healAmount, Hitpoints, maximumHitpoints);
         }
 
-        public void FullyHeal()
+        private void SetHitpointsToMax()
         {
-            hitpoints = maximumHitpoints;
+            Hitpoints = maximumHitpoints;
+        }
+
+        public void Respawned()
+        {
+            SetHitpointsToMax();
+            onRespawn.Invoke();
         }
 
         public void LookForInteractables()
         {
             Debug.Log("Looking for interactables...");
-            var hit = Physics2D.OverlapCircle(transform.position, 0.5f, interactableLayer);
+            
+            var hit = Physics2D.OverlapCircle(transform.position, 0.5f, GameLayers.InteractableLayerMask);
             if (!hit) return;
-            Debug.Log(hit);
+            
             if (hit.gameObject.TryGetComponent<IInteractable>(out var interactable))
             {
                 Interact(interactable);
@@ -91,36 +86,6 @@ namespace Player
         private void Interact(IInteractable interactable)
         {
             interactable.Interact(this);
-        }
-
-        private IEnumerator MakeTemporarilyInvincible(float duration)
-        {
-            isInvincible = true;
-            IgnoreCollisionWithTraps(true);
-            pc.ToggleTransparency(true);
-            
-            yield return new WaitForSeconds(duration);
-            
-            isInvincible = false;
-            IgnoreCollisionWithTraps(false);
-            pc.ToggleTransparency(false);
-        }
-
-        private void IgnoreCollisionWithTraps(bool state)
-        {
-            Physics2D.IgnoreLayerCollision(playerLayer, trapsLayer, state);
-        }
-
-        public void Knockback(Vector2 direction, float force)
-        {
-            pc.Knockback(direction, force);
-        }
-
-        public void Restart()
-        {
-            FullyHeal();
-            pc.ResetParticlesAndAnimator();
-            pc.EnableInput();
         }
     }
 }

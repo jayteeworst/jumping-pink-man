@@ -1,4 +1,6 @@
+using Platformer;
+
 public interface IPickupable
     {
-        void PickUp(Player.Player p);
+        void PickUp(Player p);
     }

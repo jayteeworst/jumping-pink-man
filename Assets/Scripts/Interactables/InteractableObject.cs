@@ -1,43 +1,42 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class InteractableObject : MonoBehaviour, IInteractable
+namespace Platformer
 {
-   private BoxCollider2D interactionArea;
-   protected bool isInteractionEnabled;
-   [SerializeField] protected GameObject popup;
-
-   protected virtual void Awake()
+   public abstract class InteractableObject : MonoBehaviour, IInteractable
    {
-      interactionArea = GetComponent<BoxCollider2D>();
-      isInteractionEnabled = true;
-   }
+      private BoxCollider2D interactionArea;
+      protected bool isInteractionEnabled;
+      [SerializeField] protected GameObject popup;
 
-   private void OnTriggerEnter2D(Collider2D other)
-   {
-      if (!other.CompareTag("Player") || !isInteractionEnabled) return;
-      
-      popup.SetActive(true);
-   }
+      protected virtual void Awake()
+      {
+         interactionArea = GetComponent<BoxCollider2D>();
+         isInteractionEnabled = true;
+      }
 
-   private void OnTriggerExit2D(Collider2D other)
-   {
-      if (!other.CompareTag("Player")) return;
-      
-      popup.SetActive(false);
-   }
+      private void OnTriggerEnter2D(Collider2D other)
+      {
+         if (!other.CompareTag("Player") || !isInteractionEnabled) return;
 
-   public virtual void Interact(Player.Player interactor)
-   {
-      Debug.Log(interactor + " interacted with " + gameObject);
-   }
+         popup.SetActive(true);
+      }
 
-   protected virtual void DisableInteraction()
-   {
-      popup.SetActive(false);
-      isInteractionEnabled = false;
+      private void OnTriggerExit2D(Collider2D other)
+      {
+         if (!other.CompareTag("Player")) return;
+
+         popup.SetActive(false);
+      }
+
+      public virtual void Interact(Player interactor)
+      {
+         Debug.Log(interactor + " interacted with " + gameObject);
+      }
+
+      protected virtual void DisableInteraction()
+      {
+         popup.SetActive(false);
+         isInteractionEnabled = false;
+      }
    }
 }

@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1437217218432075674
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4463261831689248518}
-  m_Layer: 0
-  m_Name: GroundCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4463261831689248518
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437217218432075674}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.525, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6437509248660955365}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1600459550864585143
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6437509248660955365}
   - component: {fileID: 7460431719502428017}
-  - component: {fileID: 9189721709358155215}
   - component: {fileID: 2941424096420918383}
   - component: {fileID: 859904606473109218}
   - component: {fileID: 3749960518962412026}
+  - component: {fileID: 1669300386411491184}
+  - component: {fileID: 5343714142104145607}
   - component: {fileID: 2873796104159649990}
   m_Layer: 11
   m_Name: Player
@@ -66,12 +36,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1293073282811602705}
-  - {fileID: 4463261831689248518}
   - {fileID: 2368204181413196898}
   - {fileID: 6635464859288305414}
   - {fileID: 8164819473872362093}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &7460431719502428017
 CapsuleCollider2D:
@@ -108,51 +77,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.1}
   m_Size: {x: 0.6, y: 0.8}
   m_Direction: 0
---- !u!61 &9189721709358155215
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1600459550864585143}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.4059521}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.4144137, y: 0.18809581}
-  m_EdgeRadius: 0
 --- !u!50 &2941424096420918383
 Rigidbody2D:
   serializedVersion: 4
@@ -193,6 +117,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumHitpoints: 10
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5343714142104145607}
+        m_TargetAssemblyTypeName: Platformer.PlayerVisuals, Assembly-CSharp
+        m_MethodName: PlayerHitVisuals
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1669300386411491184}
+        m_TargetAssemblyTypeName: Platformer.PlayerInvincibilityToggle, Assembly-CSharp
+        m_MethodName: SetInvincibility
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5343714142104145607}
+        m_TargetAssemblyTypeName: Platformer.PlayerVisuals, Assembly-CSharp
+        m_MethodName: PlayerDeadVisuals
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRespawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5343714142104145607}
+        m_TargetAssemblyTypeName: Platformer.PlayerVisuals, Assembly-CSharp
+        m_MethodName: ResetParticlesAndAnimator
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3749960518962412026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,14 +191,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 7.5
-  playerVisuals: {fileID: 9131909939850516268}
   groundLayer:
     serializedVersion: 2
     m_Bits: 192
-  animator: {fileID: 1350810929522851427}
-  movementParticles: {fileID: 7717175636490826868}
-  bloodParticles: {fileID: 220076117161336389}
-  bloodParticlesDeath: {fileID: 6508400360739800466}
+  groundCheckCollider: {fileID: 7460431719502428017}
+--- !u!114 &1669300386411491184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600459550864585143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136b7ed6537df3943b104b8a063daba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerVisuals: {fileID: 5343714142104145607}
+  _invincibilityTime: 3
+--- !u!114 &5343714142104145607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600459550864585143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d59e8822327e24689ee9a5ea8374ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1350810929522851427}
+  _movementParticles: {fileID: 7717175636490826868}
+  _bloodParticles: {fileID: 220076117161336389}
+  _bloodParticlesDeath: {fileID: 6508400360739800466}
+  _playerSpriteRenderer: {fileID: 3254608217433795677}
 --- !u!114 &2873796104159649990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,14 +267,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 67ceb1ab-9eb9-4801-8f9c-219b7277ca7e
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 60daddde-2402-4d3d-9bde-5d6af2b3df98
-    m_ActionName: Player/Look[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 307a1255-ddb3-4d6d-9518-cfba5d955705
-    m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: c84f376e-bc6d-4875-8555-40658c7eaef3

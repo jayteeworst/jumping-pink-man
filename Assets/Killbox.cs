@@ -1,3 +1,4 @@
+using Platformer;
 using UnityEngine;
 
 public class Killbox : MonoBehaviour
@@ -11,9 +12,9 @@ public class Killbox : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<Player.Player>(out var player))
+        if (other.TryGetComponent<Player>(out var player))
         {
-            player.Kill();
+            player.Killed();
             _audioSource.Play();
         }
     }

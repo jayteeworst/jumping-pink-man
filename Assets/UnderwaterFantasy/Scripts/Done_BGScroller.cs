@@ -1,6 +1,6 @@
 ﻿// scrolls a quad object
+
 using UnityEngine;
-using System.Collections;
 
 public class Done_BGScroller : MonoBehaviour
 {

@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Platformer;
 using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour
@@ -12,17 +10,12 @@ public class PlayerSpawn : MonoBehaviour
     {
         GameManager.Instance.onGameStateChanged += GameStateChanged;
         
-        if(FindObjectOfType<Player.Player>())
-            playerGO = FindObjectOfType<Player.Player>().gameObject;
+        if(FindObjectOfType<Player>())
+            playerGO = FindObjectOfType<Player>().gameObject;
     }
 
     private void GameStateChanged(GameManager.State state)
     {
-        // if (state == GameManager.State.Started)
-        // {
-        //     OnGameStarted();
-        // }
-
         if (state == GameManager.State.Restarted)
         {
             OnGameRestarted();
@@ -32,11 +25,6 @@ public class PlayerSpawn : MonoBehaviour
     private void OnGameRestarted()
     {
         playerGO.transform.position = transform.position;
-        playerGO.GetComponent<Player.Player>().Restart();
+        playerGO.GetComponent<Player>().Respawned();
     }
-
-    // private void OnGameStarted()
-    // {
-    //     playerGO = Instantiate(playerPrefab, transform.position, Quaternion.identity);
-    // }
 }

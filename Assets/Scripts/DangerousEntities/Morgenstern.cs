@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Traps
+namespace Platformer
 {
     public class Morgenstern : Trap
     {
@@ -13,9 +12,10 @@ namespace Traps
             rootTransform.Rotate(transform.forward, rotationSpeed);
         }
 
-        protected override void PlayerCollided(Player.Player player)
+        protected override void PlayerCollidedHandler(Player player, DamageInfo damageInfo)
         {
-            player.Hit(this);
+            damageInfo.knockbackForce *= Mathf.Abs(rotationSpeed);
+            base.PlayerCollidedHandler(player, damageInfo);
             rotationSpeed *= -1;
         }
     }

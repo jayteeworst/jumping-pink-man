@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Cainos.LucidEditor
 {
-    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Field)]
     public class PropertyGroupAttribute : Attribute
     {
         public readonly string path;
@@ -12,7 +12,7 @@ namespace Cainos.LucidEditor
 
         public PropertyGroupAttribute(string groupPath)
         {
-            this.path = groupPath;
+            path = groupPath;
             name = path.Split('/').Last();
             groupDepth = path.Count(x => x == '/');
         }

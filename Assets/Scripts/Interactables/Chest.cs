@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Interactables
+namespace Platformer
 {
     public class Chest : RandomizedContainer
     {
@@ -15,7 +14,7 @@ namespace Interactables
             chestAnimator = GetComponent<Animator>();
         }
 
-        public override void Interact(Player.Player interactor)
+        public override void Interact(Player interactor)
         {
             if (!isInteractionEnabled) return;
             base.Interact(interactor);

@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    [System.Serializable]
+    [Serializable]
     public class ParallaxLayer
     {
         public Transform layerTransform;

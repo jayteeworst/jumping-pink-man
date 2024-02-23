@@ -1,10 +1,11 @@
 //https://www.youtube.com/watch?v=KPoeNZZ6H4s
 
+using System;
 using UnityEngine;
 
 namespace Cainos.Common
 {
-    [System.Serializable]
+    [Serializable]
     public struct SecondOrderDynamics
     {
         private Vector3 xp;
@@ -55,9 +56,9 @@ namespace Cainos.Common
 
         public SecondOrderDynamics(float frequency, float damping, float response)
         {
-            this.f = 1.0f;
-            this.d = 0.0f;
-            this.r = 0.0f;
+            f = 1.0f;
+            d = 0.0f;
+            r = 0.0f;
             xp = Vector3.zero;
             y = Vector3.zero;
             xd = Vector3.zero;
