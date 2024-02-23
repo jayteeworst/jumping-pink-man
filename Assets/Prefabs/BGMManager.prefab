@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2844785519704171964}
-  - component: {fileID: 7505606377484059295}
   - component: {fileID: 6190195240206072904}
+  - component: {fileID: 7505606377484059295}
   m_Layer: 0
   m_Name: BGMManager
   m_TagString: Untagged
@@ -33,6 +33,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6190195240206072904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936071915319179065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f595a12df4dd45429981228e9cbe6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 7505606377484059295}
+  musicList: {fileID: 11400000, guid: 07327f6bb3d593748bfebee4fd20478b, type: 2}
 --- !u!82 &7505606377484059295
 AudioSource:
   m_ObjectHideFlags: 0
@@ -47,7 +61,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -129,16 +143,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6190195240206072904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4936071915319179065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f595a12df4dd45429981228e9cbe6bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicList: {fileID: 11400000, guid: 07327f6bb3d593748bfebee4fd20478b, type: 2}

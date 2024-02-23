@@ -50,10 +50,9 @@ public class MainMenuUI : MonoBehaviour
 
     private void SaveCurrentValues()
     {
-        Debug.Log("Saving values to PlayerPrefs, Music: " + musicVolumeSlider.value + ", SFX: " + SFXSlider.value);
+        Debug.Log("Saving values to PlayerPrefs, BGM: " + musicVolumeSlider.value + ", SFX: " + SFXSlider.value);
         PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
         PlayerPrefs.SetFloat("SFXVolume", SFXSlider.value);
         PlayerPrefs.Save();
-        
     }
 }

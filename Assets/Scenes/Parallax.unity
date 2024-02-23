@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Jeszcze raz?
+  m_text: Try again?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae90a1f4fa6af884587ce970189307c0, type: 2}
   m_sharedMaterial: {fileID: -7504853038973037351, guid: ae90a1f4fa6af884587ce970189307c0, type: 2}
@@ -2013,7 +2013,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ponowna przygoda
+  m_text: Repeat adventure
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae90a1f4fa6af884587ce970189307c0, type: 2}
   m_sharedMaterial: {fileID: -7504853038973037351, guid: ae90a1f4fa6af884587ce970189307c0, type: 2}
@@ -7212,7 +7212,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wracam do menu
+  m_text: Return to main menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ae90a1f4fa6af884587ce970189307c0, type: 2}
   m_sharedMaterial: {fileID: -7504853038973037351, guid: ae90a1f4fa6af884587ce970189307c0, type: 2}
@@ -8055,41 +8055,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4759903030466756975, guid: ebe900c0ec3b4bb4bb05eca46fa96db7, type: 3}
-      propertyPath: parallaxCoefficient.x
-      value: 0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 4759903030466756975, guid: ebe900c0ec3b4bb4bb05eca46fa96db7, type: 3}
-      propertyPath: parallaxCoefficient.y
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 6116834643430153328, guid: ebe900c0ec3b4bb4bb05eca46fa96db7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.27
-      objectReference: {fileID: 0}
     - target: {fileID: 6457214837217757684, guid: ebe900c0ec3b4bb4bb05eca46fa96db7, type: 3}
       propertyPath: m_Name
       value: Parallax
-      objectReference: {fileID: 0}
-    - target: {fileID: 6624387139404509209, guid: ebe900c0ec3b4bb4bb05eca46fa96db7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008074071544350199, guid: ebe900c0ec3b4bb4bb05eca46fa96db7, type: 3}
-      propertyPath: parallaxCoefficient.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008074071544350199, guid: ebe900c0ec3b4bb4bb05eca46fa96db7, type: 3}
-      propertyPath: parallaxCoefficient.y
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316836866029316349, guid: ebe900c0ec3b4bb4bb05eca46fa96db7, type: 3}
-      propertyPath: parallaxCoefficient.x
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 8316836866029316349, guid: ebe900c0ec3b4bb4bb05eca46fa96db7, type: 3}
-      propertyPath: parallaxCoefficient.y
-      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8107,10 +8075,6 @@ PrefabInstance:
     - target: {fileID: 2572440613973906380, guid: a3ee7988700ef97458bdf59d4c6d9544, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3749960518962412026, guid: a3ee7988700ef97458bdf59d4c6d9544, type: 3}
-      propertyPath: moveSpeed
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6437509248660955365, guid: a3ee7988700ef97458bdf59d4c6d9544, type: 3}
       propertyPath: m_RootOrder

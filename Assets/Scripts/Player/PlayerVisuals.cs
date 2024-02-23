@@ -14,7 +14,8 @@ namespace Platformer
         [SerializeField] private ParticleSystem _movementParticles;
         [SerializeField] private ParticleSystem _bloodParticles;
         [SerializeField] private ParticleSystem _bloodParticlesDeath;
-
+        
+        [Header("Player Sprite Renderer")]
         [SerializeField] private SpriteRenderer _playerSpriteRenderer;
         private bool _isFacingRight = true;
 
@@ -26,7 +27,7 @@ namespace Platformer
             _animator.SetFloat(PlayerAnimatorConstants.VerticalVelocity, rbVelocity.y);
             _animator.SetFloat(PlayerAnimatorConstants.RunSpeed, Mathf.Abs(rbVelocity.x));
 
-            PlayerMovingVisuals(rbVelocity.x > 0 || rbVelocity.y > 0);
+            PlayerMovingVisuals(rbVelocity.x > Mathf.Epsilon || rbVelocity.y > Mathf.Epsilon);
 
             if (!_isFacingRight && moveDirection > 0f)
             {

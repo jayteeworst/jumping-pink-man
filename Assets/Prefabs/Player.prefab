@@ -189,12 +189,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b79e074c517e143ac0b9742a8d1bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 7.5
+  moveSpeed: 3
+  jumpForce: 7
   groundLayer:
     serializedVersion: 2
     m_Bits: 192
   groundCheckCollider: {fileID: 7460431719502428017}
+  enableDebug: 0
 --- !u!114 &1669300386411491184
 MonoBehaviour:
   m_ObjectHideFlags: 0

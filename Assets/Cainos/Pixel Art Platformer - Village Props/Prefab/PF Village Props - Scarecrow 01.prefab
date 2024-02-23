@@ -10,7 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2593891206015117074}
   - component: {fileID: 2593891206015117075}
-  m_Layer: 0
+  - component: {fileID: 1607239087498029174}
+  - component: {fileID: 3844206320975265851}
+  - component: {fileID: 767514278920057004}
+  m_Layer: 8
   m_Name: PF Village Props - Scarecrow 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2593891206015117075
 SpriteRenderer:
@@ -84,3 +87,101 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1607239087498029174
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2593891206015117072}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2.8125}
+    newSize: {x: 2, y: 2.8125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1, y: 0.03125}
+      - {x: 1.0055761, y: 0.3510791}
+      - {x: 0.37850666, y: 0.38687038}
+      - {x: 0.55251884, y: 0.97257185}
+      - {x: 0.25701427, y: 0.9548111}
+      - {x: 0.11, y: 1.40625}
+      - {x: -0.1, y: 1.40625}
+      - {x: -0.3414049, y: 0.91313064}
+      - {x: -0.57598877, y: 0.83597124}
+      - {x: -0.48003578, y: 0.4553957}
+      - {x: -1, y: 0.375}
+      - {x: -1, y: 0.0625}
+      - {x: -0.84375, y: -0.0625}
+      - {x: -0.34375, y: -0.0625}
+      - {x: -0.4375, y: -0.53125}
+      - {x: -0.4375, y: -0.96875}
+      - {x: -0.125, y: -1.40625}
+      - {x: 0.15625, y: -1.40625}
+      - {x: 0.4375, y: -0.90625}
+      - {x: 0.46875, y: -0.46875}
+      - {x: 0.35238266, y: 0.017760932}
+  m_UseDelaunayMesh: 0
+--- !u!114 &3844206320975265851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2593891206015117072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7923c435c65edf54d967ca988a256daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  knockbackForce: 1000
+  hitpoints: 1
+  hitFromAboveAllowedOffset: 0.01
+--- !u!114 &767514278920057004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2593891206015117072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b47439072e8199489975b02171dbadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finishPosition: {x: 16, y: 1.05}
+  patrolDuration: 5
+  waitDuration: 1
+  _onHitPauseDuration: 2
