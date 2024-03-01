@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -33,8 +34,13 @@ namespace Platformer
                     totalCoinsValue += coin.CoinType.itemValue;
                 }
             }
-            // coinText.text = collectedCoinsValue + "/" + totalCoinsValue;
+            
             Coin.OnCoinCollected += HandleCoinCollection;
+        }
+
+        private void OnDestroy()
+        {
+            Coin.OnCoinCollected -= HandleCoinCollection;
         }
 
         private void HandleCoinCollection(Coin collectedCoin)

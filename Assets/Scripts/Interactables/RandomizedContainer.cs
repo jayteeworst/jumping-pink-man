@@ -15,7 +15,7 @@ namespace Platformer
             base.Awake();
             if (dropTable == null)
             {
-                Debug.LogError(gameObject.name + " doesn't define drop table!");
+                Debug.LogError(gameObject.name + ": missing drop table!");
                 return;
             }
 
